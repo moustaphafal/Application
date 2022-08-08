@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * <p>Classe Java pour listerResponse complex type.
  * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
+ * <p>Le fragment de schï¿½ma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
  * &lt;complexType name="listerResponse">
@@ -64,6 +64,10 @@ public class ListerResponse {
             _return = new ArrayList<User>();
         }
         return this._return;
+    }
+
+    public void setReturn(List<User> ul){
+        _return = ul ;
     }
 
 }
