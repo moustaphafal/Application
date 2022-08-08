@@ -30,7 +30,8 @@ public class AuthentificationWS
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.1.12:8586/AuthentificationService?wsdl");
+            url = new URL("http://192.168.1.17:8586/AuthentificationService?wsdl");
+            // ADRESSE A MODIFIER EN FONCTION DE L'ADRESSE DE LA MACHINE
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
