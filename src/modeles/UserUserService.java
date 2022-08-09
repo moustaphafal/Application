@@ -18,7 +18,7 @@ public class UserUserService {
         }
     }
 
-    public UserUserService getInstanceUserUserService() throws WebServiceException{
+    public static UserUserService getInstanceUserUserService() throws WebServiceException{
         if(instance != null)
             return instance;
         else 
@@ -45,7 +45,7 @@ public class UserUserService {
         reponse.setReturn(stub.inserer(requete.getEmail(),requete.getPassword(),requete.getNom(),requete.getPrenom(), requete.getTelnum(), requete.getUserRole(),requete.isAutorized()));
         return reponse ;
     }
-    public ListerResponse lister(Lister requete){
+    public ListerResponse lister(){
         ListerResponse reponse = new ListerResponse();
         reponse.setReturn(stub.lister());
         return reponse ;

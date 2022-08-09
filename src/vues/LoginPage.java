@@ -27,6 +27,7 @@ public class LoginPage extends javax.swing.JDialog {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);    //CENTRER LA JFRAME
+        this.setVisible(true);
     }
     
     public LoginPage(){
@@ -62,18 +63,8 @@ public class LoginPage extends javax.swing.JDialog {
         loginField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         loginField.setForeground(new java.awt.Color(102, 102, 102));
         loginField.setPreferredSize(new java.awt.Dimension(105, 55));
-        loginField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginFieldActionPerformed(evt);
-            }
-        });
 
         passwordField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
 
         authLabel.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 36)); // NOI18N
         authLabel.setForeground(new java.awt.Color(102, 102, 102));
@@ -89,11 +80,6 @@ public class LoginPage extends javax.swing.JDialog {
         ConnectButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         ConnectButton.setForeground(new java.awt.Color(255, 255, 255));
         ConnectButton.setText("Se Connecter");
-        ConnectButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                ConnectButtonMouseClicked(evt);
-            }
-        });
         ConnectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ConnectButtonActionPerformed(evt);
@@ -155,15 +141,11 @@ public class LoginPage extends javax.swing.JDialog {
         );
 
         pack();
-    }// </editor-fold>                        
-
-    private void loginFieldActionPerformed(java.awt.event.ActionEvent evt) {                                           
-        // TODO add your handling code here:
-    }                                          
+    }// </editor-fold>                                                                 
 
     private void ConnectButtonActionPerformed(java.awt.event.ActionEvent evt) {                                              
         
-       String login = loginField.getText();
+        String login = loginField.getText();
         String psswd = passwordField.getText();
         
         if(login.equals("") || psswd.equals("")){
@@ -192,60 +174,11 @@ public class LoginPage extends javax.swing.JDialog {
             
         }
         
-    }                                             
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-    }                                             
-
-    private void ConnectButtonMouseClicked(java.awt.event.MouseEvent evt) {                                           
-        
-    }                                          
-
+    }                                                                  
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                LoginPage dialog = new LoginPage(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton ConnectButton;
