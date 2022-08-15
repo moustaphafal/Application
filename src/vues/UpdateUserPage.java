@@ -266,8 +266,7 @@ public final class UpdateUserPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>                                                                                                            
 
-    private void modifierBtnActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+    private void modifierBtnActionPerformed(java.awt.event.ActionEvent evt) {
 
         UserUserService us = UserUserService.getInstanceUserUserService();
         Update requete = new Update();
@@ -287,7 +286,7 @@ public final class UpdateUserPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "L'utilisateur a bien été ajouté !");
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "L'utilisateur n'a être enregistré ! Verifiez les champs");
+            JOptionPane.showMessageDialog(null, "L'utilisateur n'a pas été enregistré ! Verifiez les champs");
             emailField.setText("");
             passwordField.setText("");
             nomField.setText("");

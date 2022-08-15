@@ -223,16 +223,7 @@ public class AddUserPage extends javax.swing.JFrame {
     }// </editor-fold>                                                                  
                                           
 
-    private void EnregistrerBtnActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
-        /*User _newUser = new User();
-        _newUser.setEmail(emailField.getText());
-        _newUser.setNom(nomField.getText());
-        _newUser.setPrenom(prenomField.getText());
-        _newUser.setPassword(passwordField.getText());
-        _newUser.setTelnum(numtelField.getText());
-        _newUser.setUser_role(Role_userBox.getItemAt(0));
-        _newUser.setAutorized(autorizedGroupBtn.isSelected((ButtonModel) OuiRBtn));*/
+    private void EnregistrerBtnActionPerformed(java.awt.event.ActionEvent evt) {
         
         UserUserService us = UserUserService.getInstanceUserUserService();
         Inserer requete = new Inserer();
@@ -250,7 +241,7 @@ public class AddUserPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "L'utilisateur a bien été ajouté !");
             dispose();
         } else {
-            JOptionPane.showMessageDialog(null, "L'utilisateur n'a être enregistré !");
+            JOptionPane.showMessageDialog(null, "L'utilisateur n'a pas été enregistré !");
             emailField.setText("");
             passwordField.setText("");
             nomField.setText("");

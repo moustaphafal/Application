@@ -30,7 +30,7 @@ public class UserWS
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://192.168.1.22:8585/UserService?wsdl");
+            url = new URL("http://192.168.137.1:8585/UserService?wsdl");
             // CODE A MODIFIER EN FONCTION DE L'ADRESSE DE LA MACHINE
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);

@@ -1,19 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package vues;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import modeles.UserUserService;
-import services.Find;
-import services.FindResponse;
-import services.ListerResponse;
-import services.Sup;
-import services.SupResponse;
-import services.User;
+import services.*;
 
 /**
  *
@@ -30,7 +28,8 @@ public final class HomePage extends javax.swing.JFrame {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-        this.setVisible(true);
+	  this.setVisible(true);
+	
     }
     
     public void actualiser(){
@@ -63,15 +62,28 @@ public final class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        userTable = new javax.swing.JTable();
         addUserBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
+        autoriserBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        userTable = new javax.swing.JTable();
+        bloquerBtn = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 866, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 442, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,44 +91,6 @@ public final class HomePage extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 1, 24)); // NOI18N
         jLabel1.setText("     Gestion des utilisateurs");
-
-        userTable.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
-        userTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "id", "email", "password", "nom", "prenom", "numtel", "user_role", "autorized"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(userTable);
-        if (userTable.getColumnModel().getColumnCount() > 0) {
-            userTable.getColumnModel().getColumn(0).setResizable(false);
-            userTable.getColumnModel().getColumn(1).setResizable(false);
-            userTable.getColumnModel().getColumn(3).setResizable(false);
-            userTable.getColumnModel().getColumn(4).setResizable(false);
-        }
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 866, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
 
         addUserBtn.setBackground(new java.awt.Color(51, 153, 255));
         addUserBtn.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
@@ -158,47 +132,97 @@ public final class HomePage extends javax.swing.JFrame {
             }
         });
 
+        autoriserBtn.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        autoriserBtn.setForeground(new java.awt.Color(102, 204, 0));
+        autoriserBtn.setText("Autoriser");
+        autoriserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autoriserBtnActionPerformed(evt);
+            }
+        });
+
+        userTable.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 14)); // NOI18N
+        userTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id", "email", "password", "nom", "prenom", "numtel", "user_role", "autorized"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(userTable);
+        if (userTable.getColumnModel().getColumnCount() > 0) {
+            userTable.getColumnModel().getColumn(0).setResizable(false);
+            userTable.getColumnModel().getColumn(1).setResizable(false);
+            userTable.getColumnModel().getColumn(3).setResizable(false);
+            userTable.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        bloquerBtn.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
+        bloquerBtn.setForeground(new java.awt.Color(204, 0, 51));
+        bloquerBtn.setText("Bloquer");
+        bloquerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bloquerBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(addUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(refreshBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                            .addComponent(refreshBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                                .addComponent(updateBtn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(deleteBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(bloquerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(autoriserBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 866, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(addUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(86, 86, 86)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(107, 107, 107)
-                        .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(addUserBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(59, 59, 59)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(autoriserBtn)
+                    .addComponent(bloquerBtn))
+                .addGap(63, 63, 63)
+                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(68, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,37 +248,16 @@ public final class HomePage extends javax.swing.JFrame {
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         AddUserPage aup = new AddUserPage();
         aup.show();
-        aup.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         actualiser();
     }                                          
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.actualiser();
         
-    }
-    
-    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {
+    }                                          
 
-        int rowToUpdate = userTable.getSelectedRow();
-        if(rowToUpdate < 0)
-        JOptionPane.showMessageDialog(null, "Veuillez selectionner une ligne !");
-        else {
-            UserUserService us = UserUserService.getInstanceUserUserService();
-            model = (DefaultTableModel) userTable.getModel();
-            Find userToFind = new Find();
-            userToFind.setEmail(model.getValueAt(rowToUpdate, 1).toString());
-            //String adresseMail = model.getValueAt(rowToUpdate, 1).toString();
-            FindResponse userFound = us.find(userToFind);
-            UpdateUserPage uup = new UpdateUserPage(userFound.getReturn());
-            uup.show();
-            this.actualiser();
-            uup.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        }
-    }
-    
-    
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        
+
         int rowToDelete = userTable.getSelectedRow();  
         model = (DefaultTableModel)userTable.getModel();
         if(rowToDelete <= 0){
@@ -291,12 +294,67 @@ public final class HomePage extends javax.swing.JFrame {
         
     }                                         
 
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        int rowToUpdate = userTable.getSelectedRow();
+        if(rowToUpdate < 0)
+        JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne !");
+        else {
+            UserUserService us = UserUserService.getInstanceUserUserService();
+            model = (DefaultTableModel) userTable.getModel();
+            Find userToFind = new Find();
+            userToFind.setEmail(model.getValueAt(rowToUpdate, 1).toString());
+            //String adresseMail = model.getValueAt(rowToUpdate, 1).toString();
+            FindResponse userFound = us.find(userToFind);
+            UpdateUserPage uup = new UpdateUserPage(userFound.getReturn());
+            uup.show();
+            this.actualiser();
+            uup.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
+    }                                         
+
+    private void bloquerBtnActionPerformed(java.awt.event.ActionEvent evt) { 
+        int ligneSelectionne = userTable.getSelectedRow() ;                                          
+        if( ligneSelectionne < 0)
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne !");
+        else {
+            UserUserService us = UserUserService.getInstanceUserUserService();
+            model = (DefaultTableModel) userTable.getModel();
+            Bloquer userToBlock = new Bloquer();
+            userToBlock.setEmail(model.getValueAt(ligneSelectionne, 1).toString());
+            BloquerResponse userBlocked = us.bloquer(userToBlock);
+            if(userBlocked.getReturn() == 1)
+                JOptionPane.showMessageDialog(null, "L'utilisateur a été bloqué");
+            else
+                JOptionPane.showMessageDialog(null, "L'utilisateur a déjà été bloqué");
+        }
+        
+    }                                          
+    
+    private void autoriserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        int ligneSelectionne = userTable.getSelectedRow() ;                                          
+        if( ligneSelectionne < 0)
+            JOptionPane.showMessageDialog(null, "Veuillez sélectionner une ligne !");
+        else {
+            UserUserService us = UserUserService.getInstanceUserUserService();
+            model = (DefaultTableModel) userTable.getModel();
+            Autoriser userToBlock = new Autoriser();
+            userToBlock.setEmail(model.getValueAt(ligneSelectionne, 1).toString());
+            AutoriserResponse userBlocked = us.autoriser(userToBlock);
+            if(userBlocked.getReturn() == 1)
+                JOptionPane.showMessageDialog(null, "L'utilisateur est autorisé à faire des modifications");
+            else
+                JOptionPane.showMessageDialog(null, "L'utilisateur a déjà été autorisé à faire des modifications");
+        }
+    }                                          
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton addUserBtn;
+    private javax.swing.JButton autoriserBtn;
+    private javax.swing.JButton bloquerBtn;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
