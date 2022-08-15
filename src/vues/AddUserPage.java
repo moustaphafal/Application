@@ -8,7 +8,6 @@ import javax.swing.JOptionPane;
 import modeles.UserUserService;
 import services.Inserer;
 import services.InsererResponse;
-import services.UserService;
 
 /**
  *
@@ -24,7 +23,6 @@ public class AddUserPage extends javax.swing.JFrame {
         Toolkit toolkit = getToolkit();
         Dimension size = toolkit.getScreenSize();
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);
-        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
 
@@ -55,9 +53,9 @@ public class AddUserPage extends javax.swing.JFrame {
         NonRBtn = new javax.swing.JRadioButton();
         Role_userBox = new javax.swing.JComboBox<>();
         EnregistrerBtn = new javax.swing.JButton();
-        passwordField = new javax.swing.JPasswordField();
+        passwordField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -93,6 +91,9 @@ public class AddUserPage extends javax.swing.JFrame {
 
         nomField.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         nomField.setForeground(new java.awt.Color(102, 102, 102));
+
+        passwordField.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
+        passwordField.setForeground(new java.awt.Color(102, 102, 102));
 
         numtelField.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 18)); // NOI18N
         numtelField.setForeground(new java.awt.Color(102, 102, 102));
@@ -245,7 +246,7 @@ public class AddUserPage extends javax.swing.JFrame {
 
         InsererResponse reponse = us.inserer(requete);
         
-        if(reponse.equals(1)){
+        if(reponse.getReturn() == 1){
             JOptionPane.showMessageDialog(null, "L'utilisateur a bien été ajouté !");
             dispose();
         } else {
@@ -281,7 +282,7 @@ public class AddUserPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nomField;
     private javax.swing.JTextField numtelField;
-    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField passwordField;
     private javax.swing.JTextField prenomField;
     // End of variables declaration                   
 }

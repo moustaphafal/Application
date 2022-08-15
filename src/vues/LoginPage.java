@@ -29,11 +29,6 @@ public class LoginPage extends javax.swing.JDialog {
         setLocation(size.width/2 - getWidth()/2, size.height/2 - getHeight()/2);    //CENTRER LA JFRAME
         this.setVisible(true);
     }
-    
-    public LoginPage(){
-        initComponents();
-        
-    }
 
 
     /**
@@ -163,7 +158,7 @@ public class LoginPage extends javax.swing.JDialog {
                 if(userConnected.getReturn().getUserRole().equals("admin")){
                     HomePage home = new HomePage();
                     home.show();
-                    dispose();
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Vous n'etes pas un utilisateur admin !");
                 }

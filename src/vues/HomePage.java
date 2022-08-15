@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package vues;
 
 import java.awt.Dimension;
@@ -12,12 +8,12 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import modeles.UserUserService;
+import services.Find;
+import services.FindResponse;
 import services.ListerResponse;
 import services.Sup;
 import services.SupResponse;
 import services.User;
-import services.UserService;
-import vues.AddUserPage;
 
 /**
  *
@@ -146,6 +142,11 @@ public final class HomePage extends javax.swing.JFrame {
         updateBtn.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
         updateBtn.setForeground(new java.awt.Color(255, 255, 255));
         updateBtn.setText("Modifier");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         refreshBtn.setBackground(new java.awt.Color(153, 204, 0));
         refreshBtn.setFont(new java.awt.Font("Microsoft YaHei UI", 1, 18)); // NOI18N
@@ -223,20 +224,40 @@ public final class HomePage extends javax.swing.JFrame {
     private void addUserBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         AddUserPage aup = new AddUserPage();
         aup.show();
-        aup.setDefaultCloseOperation(aup.DISPOSE_ON_CLOSE);
+        aup.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        actualiser();
     }                                          
 
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {                                           
         this.actualiser();
         
-    }                                          
+    }
+    
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {
 
+        int rowToUpdate = userTable.getSelectedRow();
+        if(rowToUpdate < 0)
+        JOptionPane.showMessageDialog(null, "Veuillez selectionner une ligne !");
+        else {
+            UserUserService us = UserUserService.getInstanceUserUserService();
+            model = (DefaultTableModel) userTable.getModel();
+            Find userToFind = new Find();
+            userToFind.setEmail(model.getValueAt(rowToUpdate, 1).toString());
+            //String adresseMail = model.getValueAt(rowToUpdate, 1).toString();
+            FindResponse userFound = us.find(userToFind);
+            UpdateUserPage uup = new UpdateUserPage(userFound.getReturn());
+            uup.show();
+            this.actualiser();
+            uup.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        }
+    }
+    
+    
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-
-        int rowToDelete = userTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel)userTable.getModel();
         
-        if(rowToDelete <=0){
+        int rowToDelete = userTable.getSelectedRow();  
+        model = (DefaultTableModel)userTable.getModel();
+        if(rowToDelete <= 0){
             //JOptionPane.showMessageDialog(null,"Veuillez selectionner une ligne au niveau du tableau","Selectionnez une ligne",JOptionPane.ERROR_MESSAGE);
         } else {
             int result = JOptionPane.showConfirmDialog(null, "Etes vous sur de vouloir supprimer cet Utilisateur ?","Suppression d'un utilisateur", JOptionPane.YES_NO_OPTION);
@@ -284,5 +305,6 @@ public final class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton updateBtn;
     private javax.swing.JTable userTable;
+    private DefaultTableModel model;
     // End of variables declaration                   
 }
